@@ -11,18 +11,14 @@ function setupDeck() {
     card.innerHTML = `<i class='${icon}'></i>`
     cards.push(card);
   }
+  shuffle(cards);
   for (const card of cards) {
     deck.appendChild(card);
   }
 }
 
-/*
- *   - shuffle the list of cards using the provided "shuffle" method below
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
