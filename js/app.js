@@ -1,4 +1,5 @@
 const deck = document.getElementsByClassName('deck')[0];
+deck.addEventListener('click', flipCard);
 
 function setupDeck() {
   const cards = [];
@@ -6,8 +7,6 @@ function setupDeck() {
   for (const icon of icons) {
     const card = document.createElement('li');
     card.classList.add('card');
-    card.classList.add('open');
-    card.classList.add('show');
     card.innerHTML = `<i class='${icon}'></i>`
     cards.push(card);
   }
@@ -31,6 +30,9 @@ function shuffle(array) {
   return array;
 }
 
+function flipCard(e) {
+  e.target.classList.add('open', 'show')
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
