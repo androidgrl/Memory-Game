@@ -1,6 +1,13 @@
 const deck = document.getElementsByClassName('deck')[0];
+const resetButton = document.getElementsByClassName('restart')[0];
+const timer = document.getElementsByClassName('timer')[0];
+
+let openCards = [];
+let seconds = 0
+let minutes = 0
+
+resetButton.addEventListener('click', resetGame);
 deck.addEventListener('click', flipCard);
-const openCards = [];
 
 function setupDeck() {
   const cards = [];
@@ -53,13 +60,37 @@ function cardMatches(card) {
   return result;
 }
 
+function resetGame() {
+  deck.innerHTML = '';
+  seconds = 0;
+  minutes = 0;
+  openCards = [];
+  setupDeck();
+}
+
+function startTimer() {
+  setTimeout(add, 1000);
+}
+
+function add() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+      minutes = 0;
+    }
+  }
+
+  timer.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+  startTimer();
+}
+
 /*
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-window.onload = setupDeck();
+setupDeck();
+startTimer();
