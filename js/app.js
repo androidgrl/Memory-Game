@@ -1,5 +1,6 @@
 const deck = document.getElementsByClassName('deck')[0];
 deck.addEventListener('click', flipCard);
+const openCards = [];
 
 function setupDeck() {
   const cards = [];
@@ -31,12 +32,28 @@ function shuffle(array) {
 }
 
 function flipCard(e) {
-  e.target.classList.add('open', 'show')
+  e.target.classList.add('open', 'show');
+  checkForMatch(e.target);
+}
+
+function checkForMatch(card) {
+  if (!openCards.length || cardMatches(card) || !(openCards.length % 2)) {
+    openCards.push(card);
+  } else {
+    setTimeout(function() {
+      card.classList.remove('open', 'show');
+    }, 1000)
+  }
+}
+
+function cardMatches(card) {
+  result = openCards.some(function(openCard) {
+    return openCard.firstElementChild.classList[1] === card.firstElementChild.classList[1];
+  })
+  return result;
 }
 
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
