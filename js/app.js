@@ -2,16 +2,17 @@ const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
 const timer = document.getElementsByClassName('timer')[0];
 
-let openCards = [];
-let seconds = 0
-let minutes = 0
+const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
+  'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf',
+'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf',
+'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle',
+'fa fa-paper-plane-o', 'fa fa-cube'];
 
 resetButton.addEventListener('click', resetGame);
 deck.addEventListener('click', flipCard);
 
 function setupDeck() {
   const cards = [];
-  const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube']
   for (const icon of icons) {
     const card = document.createElement('li');
     card.classList.add('card');
@@ -26,7 +27,6 @@ function setupDeck() {
 
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
-
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -34,7 +34,6 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
@@ -46,10 +45,16 @@ function flipCard(e) {
 function checkForMatch(card) {
   if (!openCards.length || cardMatches(card) || !(openCards.length % 2)) {
     openCards.push(card);
+    if (openCards.length === icons.length) {
+      setTimeout(function() {
+        resetGame();
+        alert(`Congratulations you finished the game in less than ${minutes + 1} ${minuteOrMinutes()}!  Would you like to play again?`);
+      }, 300);
+    }
   } else {
     setTimeout(function() {
       card.classList.remove('open', 'show');
-    }, 1000)
+    }, 1000);
   }
 }
 
@@ -68,29 +73,13 @@ function resetGame() {
   setupDeck();
 }
 
-function startTimer() {
-  setTimeout(add, 1000);
-}
-
-function add() {
-  seconds++;
-  if (seconds >= 60) {
-    seconds = 0;
-    minutes++;
-    if (minutes >= 60) {
-      minutes = 0;
-    }
+function minuteOrMinutes() {
+  if (minutes === 0) {
+    return 'minute';
+  } else {
+    return 'minutes';
   }
-
-  timer.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-  startTimer();
 }
-
-/*
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
 setupDeck();
 startTimer();
