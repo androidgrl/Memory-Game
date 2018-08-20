@@ -1,6 +1,5 @@
 const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
-const timer = document.getElementsByClassName('timer')[0];
 
 const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
   'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf',
@@ -42,43 +41,12 @@ function flipCard(e) {
   checkForMatch(e.target);
 }
 
-function checkForMatch(card) {
-  if (!openCards.length || cardMatches(card) || !(openCards.length % 2)) {
-    openCards.push(card);
-    if (openCards.length === icons.length) {
-      setTimeout(function() {
-        resetGame();
-        alert(`Congratulations you finished the game in less than ${minutes + 1} ${minuteOrMinutes()}!  Would you like to play again?`);
-      }, 300);
-    }
-  } else {
-    setTimeout(function() {
-      card.classList.remove('open', 'show');
-    }, 1000);
-  }
-}
-
-function cardMatches(card) {
-  result = openCards.some(function(openCard) {
-    return openCard.firstElementChild.classList[1] === card.firstElementChild.classList[1];
-  })
-  return result;
-}
-
 function resetGame() {
   deck.innerHTML = '';
   seconds = 0;
   minutes = 0;
   openCards = [];
   setupDeck();
-}
-
-function minuteOrMinutes() {
-  if (minutes === 0) {
-    return 'minute';
-  } else {
-    return 'minutes';
-  }
 }
 
 setupDeck();

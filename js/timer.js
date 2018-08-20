@@ -1,3 +1,5 @@
+const timer = document.getElementsByClassName('timer')[0];
+
 let openCards = [];
 let seconds = 0
 let minutes = 0
