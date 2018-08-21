@@ -1,6 +1,8 @@
 const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
+const tally = document.getElementsByClassName('moves')[0];
 
+let moves = 0;
 const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
   'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf',
 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf',
@@ -37,14 +39,20 @@ function shuffle(array) {
 }
 
 function flipCard(e) {
+  if (openCards.length % 2) {
+    moves++;
+    tally.textContent = moves;
+  }
   e.target.classList.add('open', 'show');
   checkForMatch(e.target);
 }
 
 function resetGame() {
   deck.innerHTML = '';
+  tally.textContent = 0;
   seconds = 0;
   minutes = 0;
+  moves = 0;
   openCards = [];
   setupDeck();
 }

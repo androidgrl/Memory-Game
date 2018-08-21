@@ -1,6 +1,5 @@
 const timer = document.getElementsByClassName('timer')[0];
 
-let openCards = [];
 let seconds = 0
 let minutes = 0
 
@@ -21,4 +20,3 @@ function add() {
     ":" + (seconds > 9 ? seconds : "0" + seconds);
   startTimer();
 }
-

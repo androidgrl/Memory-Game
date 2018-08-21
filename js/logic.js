@@ -1,10 +1,12 @@
+let openCards = [];
+
 function checkForMatch(card) {
-  if (!openCards.length || cardMatches(card) || !(openCards.length % 2)) {
+  if (cardMatches(card) || !(openCards.length % 2)) {
     openCards.push(card);
     if (openCards.length === icons.length) {
       setTimeout(function() {
+        alert(`Congratulations you finished the game in ${minutes} minute${pluralize(minutes)} ${seconds} second${pluralize(seconds)} and ${moves} moves!  Would you like to play again?`);
         resetGame();
-        alert(`Congratulations you finished the game in less than ${minutes + 1} ${minuteOrMinutes()}!  Would you like to play again?`);
       }, 300);
     }
   } else {
@@ -21,10 +23,10 @@ function cardMatches(card) {
   return result;
 }
 
-function minuteOrMinutes() {
-  if (minutes === 0) {
-    return 'minute';
+function pluralize(unit) {
+  if (unit === 1) {
+    return '';
   } else {
-    return 'minutes';
+    return 's';
   }
 }
