@@ -2,6 +2,7 @@ const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
 const tally = document.getElementsByClassName('moves')[0];
 const stars = document.getElementsByClassName('stars')[0];
+const playAgain = document.getElementById('play-again');
 
 let moves = 0;
 const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
@@ -10,6 +11,7 @@ const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle',
 'fa fa-paper-plane-o', 'fa fa-cube'];
 
+playAgain.addEventListener('click', resetGame);
 resetButton.addEventListener('click', resetGame);
 deck.addEventListener('click', flipCard);
 
@@ -63,6 +65,7 @@ function resetGame() {
   stars.innerHTML = '';
   openCards = [];
   setupDeck();
+  modal.style.display = 'none';
 }
 
 setupDeck();
