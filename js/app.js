@@ -1,6 +1,7 @@
 const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
 const tally = document.getElementsByClassName('moves')[0];
+const stars = document.getElementsByClassName('stars')[0];
 
 let moves = 0;
 const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
@@ -13,6 +14,9 @@ resetButton.addEventListener('click', resetGame);
 deck.addEventListener('click', flipCard);
 
 function setupDeck() {
+  for (let i = 0; i < 5; i++) {
+    stars.insertAdjacentHTML('afterbegin', '<li><i class="fa fa-star"></i></li>');
+  }
   const cards = [];
   for (const icon of icons) {
     const card = document.createElement('li');
@@ -42,6 +46,9 @@ function flipCard(e) {
   if (openCards.length % 2) {
     moves++;
     tally.textContent = moves;
+    if (moves === 25 || moves === 30 || moves === 40 || moves === 45) {
+      stars.firstElementChild.remove();
+    }
   }
   e.target.classList.add('open', 'show');
   checkForMatch(e.target);
@@ -53,6 +60,7 @@ function resetGame() {
   seconds = 0;
   minutes = 0;
   moves = 0;
+  stars.innerHTML = '';
   openCards = [];
   setupDeck();
 }
