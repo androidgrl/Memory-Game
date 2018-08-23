@@ -1,7 +1,6 @@
 const deck = document.getElementsByClassName('deck')[0];
 const resetButton = document.getElementsByClassName('restart')[0];
 const tally = document.getElementsByClassName('moves')[0];
-const stars = document.getElementsByClassName('stars')[0];
 const playAgain = document.getElementById('play-again');
 
 let moves = 0;

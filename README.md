@@ -1,20 +1,13 @@
 # Memory Game Project
 
-## Table of Contents
+This javascript game is a project for Udacity's Front End Nanodegree program.
+To play, cd into the project repo and run open index.html in the command line.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+The rules of the game are simple.  Flip over a card and find it's match.
+Repeat until all the cards are matched.
 
-## Instructions
+When the game is over you will be asked if you would like to play again and the
+cards will be shuffled, the timer reset, the star rating reset, and the number
+of moves reset.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+For a video of how to play see this [video](https://youtu.be/r5YOzWxcbng)
