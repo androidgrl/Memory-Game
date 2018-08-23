@@ -8,7 +8,9 @@ function checkForMatch(card) {
     openCards.push(card);
     if (openCards.length === icons.length) {
       setTimeout(function() {
-        modalContent.firstElementChild.innerText = `Congratulations you finished the game in ${minutes} minute${pluralize(minutes)} ${seconds} second${pluralize(seconds)} and ${moves} moves! Your star rating was ${starCount()} star${pluralize(starCount())} Would you like to play again?`
+        modalContent.firstElementChild.innerText = `Congratulations you finished the game in ${minutes}` +
+          ` minute${pluralize(minutes)} ${seconds} second${pluralize(seconds)} and ${moves} moves!` +
+          ` Your star rating was ${starCount()} star${pluralize(starCount())} Would you like to play again?`
         modal.style.display = 'block';
       }, 300);
     }

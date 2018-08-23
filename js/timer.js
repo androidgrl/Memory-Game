@@ -1,7 +1,7 @@
 const timer = document.getElementsByClassName('timer')[0];
 
-let seconds = 0
-let minutes = 0
+let seconds = 0;
+let minutes = 0;
 
 function startTimer() {
   setTimeout(add, 1000);

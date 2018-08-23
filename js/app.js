@@ -4,11 +4,13 @@ const tally = document.getElementsByClassName('moves')[0];
 const playAgain = document.getElementById('play-again');
 
 let moves = 0;
-const icons = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
+const icons = [
+  'fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor',
   'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf',
-'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf',
-'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle',
-'fa fa-paper-plane-o', 'fa fa-cube'];
+  'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf',
+  'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle',
+  'fa fa-paper-plane-o', 'fa fa-cube'
+];
 
 playAgain.addEventListener('click', resetGame);
 resetButton.addEventListener('click', resetGame);
