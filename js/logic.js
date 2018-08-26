@@ -4,7 +4,11 @@ const modalContent = document.getElementsByClassName('modal-content')[0];
 const stars = document.getElementsByClassName('stars')[0];
 
 function checkForMatch(card) {
-  if (cardMatches(card) || !(openCards.length % 2)) {
+  if (openCards.length % 2 === 0) {
+    openCards.push(card);
+  } else if (duplicate(card)) {
+    console.log('duplicate');
+  } else if (cardMatches(card)) {
     openCards.push(card);
     if (openCards.length === icons.length) {
       setTimeout(function() {
@@ -17,13 +21,20 @@ function checkForMatch(card) {
   } else {
     setTimeout(function() {
       card.classList.remove('open', 'show');
-    }, 1000);
+    }, 800);
   }
 }
 
 function cardMatches(card) {
   result = openCards.some(function(openCard) {
-    return openCard.firstElementChild.classList[1] === card.firstElementChild.classList[1];
+    return openCard.firstElementChild.className === card.firstElementChild.className;
+  })
+  return result;
+}
+
+function duplicate(card) {
+  result = openCards.some(function(openCard) {
+    return openCard === card;
   })
   return result;
 }
