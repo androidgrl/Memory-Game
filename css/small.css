@@ -1,0 +1,13 @@
+.deck {
+  width: 100%;
+  padding: 3%;
+  min-height: 50%;
+}
+
+.score-panel {
+  width: 80%;
+}
+.deck .card {
+  width: 24%;
+  margin: 0.2%;
+}
