@@ -17,4 +17,5 @@ For a video of how to play see this [video](https://youtu.be/r5YOzWxcbng)
 ## Dependencies
 
 [Font Awesome](https://fontawesome.com/v3.2.1/)
+
 [Google API Fonts - Coda](https://fonts.google.com/specimen/Coda?selection.family=Coda&query=coda)
