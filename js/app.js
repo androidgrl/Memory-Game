@@ -46,15 +46,22 @@ function shuffle(array) {
 }
 
 function flipCard(e) {
-  if (openCards.length % 2) {
-    moves++;
-    tally.textContent = moves;
-    if (moves === 25 || moves === 30 || moves === 40 || moves === 45) {
-      stars.firstElementChild.remove();
+  if (e.target.nodeName === 'LI' || e.target.nodeName === 'I') {
+    if (openCards.length % 2) {
+      moves++;
+      tally.textContent = moves;
+      if (moves === 25 || moves === 30 || moves === 40 || moves === 45) {
+        stars.firstElementChild.remove();
+      }
     }
   }
-  e.target.classList.add('open', 'show');
-  checkForMatch(e.target);
+  if (e.target.nodeName === 'LI') {
+    e.target.classList.add('open', 'show');
+    checkForMatch(e.target);
+  } else if (e.target.nodeName === 'I') {
+    e.target.parentNode.classList.add('open', 'show');
+    checkForMatch(e.target.parentNode);
+  }
 }
 
 function resetGame() {

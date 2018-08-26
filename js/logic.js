@@ -4,10 +4,10 @@ const modalContent = document.getElementsByClassName('modal-content')[0];
 const stars = document.getElementsByClassName('stars')[0];
 
 function checkForMatch(card) {
-  if (openCards.length % 2 === 0) {
-    openCards.push(card);
-  } else if (duplicate(card)) {
+  if (duplicate(card)) {
     console.log('duplicate');
+  } else if (openCards.length % 2 === 0) {
+    openCards.push(card);
   } else if (cardMatches(card)) {
     openCards.push(card);
     if (openCards.length === icons.length) {
