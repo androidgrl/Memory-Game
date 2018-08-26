@@ -3,10 +3,12 @@ const timer = document.getElementsByClassName('timer')[0];
 let seconds = 0;
 let minutes = 0;
 
+//every 1 second call add
 function startTimer() {
   setTimeout(add, 1000);
 }
 
+//add one second to the second count and correctly format seconds, minutes, and hours
 function add() {
   seconds++;
   if (seconds >= 60) {

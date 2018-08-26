@@ -16,6 +16,7 @@ playAgain.addEventListener('click', resetGame);
 resetButton.addEventListener('click', resetGame);
 deck.addEventListener('click', flipCard);
 
+//Add stars, create cards, shuffle them, and add them dynamically to page
 function setupDeck() {
   for (let i = 0; i < 5; i++) {
     stars.insertAdjacentHTML('afterbegin', '<li><i class="fa fa-star"></i></li>');
@@ -33,6 +34,7 @@ function setupDeck() {
   }
 }
 
+//shuffle cards
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
   while (currentIndex !== 0) {
@@ -45,6 +47,7 @@ function shuffle(array) {
   return array;
 }
 
+//flip card when clicked, adjust star count, and check if card is a match
 function flipCard(e) {
   if (e.target.nodeName === 'LI' || e.target.nodeName === 'I') {
     if (openCards.length % 2) {
@@ -64,6 +67,7 @@ function flipCard(e) {
   }
 }
 
+//reset the stars, timer, hide the modal and setup the deck again
 function resetGame() {
   deck.innerHTML = '';
   tally.textContent = 0;
