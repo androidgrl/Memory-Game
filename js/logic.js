@@ -21,6 +21,8 @@ function checkForMatch(card) {
     }
   } else {
     setTimeout(function() {
+      lastCard = openCards.pop();
+      lastCard.classList.remove('open','show');
       card.classList.remove('open', 'show');
     }, 800);
   }
