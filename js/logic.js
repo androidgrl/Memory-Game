@@ -20,8 +20,8 @@ function checkForMatch(card) {
     }
   } else {
     setTimeout(function() {
-      secondCard = openCards.pop();
-      firstCard = openCards.pop();
+      const secondCard = openCards.pop();
+      const firstCard = openCards.pop();
       secondCard.classList.remove('open', 'show');
       firstCard.classList.remove('open','show');
     }, 800);
