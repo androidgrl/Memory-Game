@@ -59,12 +59,19 @@ function flipCard(e) {
     }
   }
   if (e.target.nodeName === 'LI') {
-    e.target.classList.add('open', 'show');
-    checkForMatch(e.target);
+    const card = e.target;
+    loadCard(card);
   } else if (e.target.nodeName === 'I') {
-    e.target.parentNode.classList.add('open', 'show');
-    checkForMatch(e.target.parentNode);
+    const card = e.target.parentNode;
+    loadCard(card);
   }
+}
+
+//load card into openCards array, display card face up, and check if card matches
+function loadCard(card) {
+  card.classList.add('open', 'show');
+  openCards.push(card);
+  checkForMatch(card);
 }
 
 //reset the stars, timer, hide the modal and setup the deck again
