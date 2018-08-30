@@ -4,16 +4,13 @@ const modal = document.getElementById('myModal');
 const modalContent = document.getElementsByClassName('modal-content')[0];
 const stars = document.getElementsByClassName('stars')[0];
 
-//check if the card is a duplicate, if it is a match, or if it is a new card
+//check if the card is a duplicate or if it is a match and if game should end
 function checkForMatch(card) {
-  if (duplicates()) {
-    currentOpenCards.pop();
-    console.log('duplicates');
-  } else if (cardsMatch()) {
-    currentOpenCards = [];
+  if (cardsMatch()) {
     deck.addEventListener('click', flipCard);
     pairedCards.push(currentOpenCards[0]);
     pairedCards.push(currentOpenCards[1]);
+    currentOpenCards = [];
     if (pairedCards.length === icons.length) {
       setTimeout(function() {
         modalContent.firstElementChild.innerText = `Congratulations you finished the game in ${minutes}` +
@@ -39,9 +36,13 @@ function cardsMatch() {
   return result;
 }
 
-//check if the card has already been added to the list of open cards
+//check if the card has already been added to the list of cards currently open or in pairs cards
 function duplicates() {
-  const result = currentOpenCards[0] === currentOpenCards[1];
+  const currentCardsSame = currentOpenCards[0] === currentOpenCards[1];
+  const currentCardAlreadyInPairedCards = pairedCards.some(function(card) {
+    return card === currentOpenCards[0] || card === currentOpenCards[1];
+  })
+  const result = currentCardsSame || currentCardAlreadyInPairedCards;
   return result;
 }
 

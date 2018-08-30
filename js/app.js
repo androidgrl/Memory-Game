@@ -70,7 +70,10 @@ function flipCard(e) {
 //load card into pairedCards array, display card face up, and check if card matches
 function loadCard(card) {
   currentOpenCards.push(card);
-  if (currentOpenCards.length === 1) {
+  if (duplicates()) {
+    currentOpenCards.pop();
+    deck.addEventListener('click', flipCard);
+  } else if (currentOpenCards.length === 1) {
     card.classList.add('open', 'show');
   } else if (currentOpenCards.length === 2) {
     card.classList.add('open', 'show');
