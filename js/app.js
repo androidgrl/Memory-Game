@@ -50,10 +50,10 @@ function shuffle(array) {
 //flip card when clicked, adjust star count, and check if card is a match
 function flipCard(e) {
   if (e.target.nodeName === 'LI' || e.target.nodeName === 'I') {
-    if (openCards.length % 2) {
+    if (currentOpenCards.length % 2) {
       moves++;
       tally.textContent = moves;
-      if (moves === 25 || moves === 30 || moves === 40 || moves === 45) {
+      if (moves === 15 || moves === 20 || moves === 25 || moves === 30) {
         stars.firstElementChild.remove();
       }
     }
@@ -67,11 +67,16 @@ function flipCard(e) {
   }
 }
 
-//load card into openCards array, display card face up, and check if card matches
+//load card into pairedCards array, display card face up, and check if card matches
 function loadCard(card) {
-  card.classList.add('open', 'show');
-  openCards.push(card);
-  checkForMatch(card);
+  currentOpenCards.push(card);
+  if (currentOpenCards.length === 1) {
+    card.classList.add('open', 'show');
+  } else if (currentOpenCards.length === 2) {
+    card.classList.add('open', 'show');
+    deck.removeEventListener('click', flipCard);
+    checkForMatch(card);
+  }
 }
 
 //reset the stars, timer, hide the modal and setup the deck again
@@ -82,7 +87,7 @@ function resetGame() {
   minutes = 0;
   moves = 0;
   stars.innerHTML = '';
-  openCards = [];
+  pairedCards = [];
   setupDeck();
   modal.style.display = 'none';
 }
